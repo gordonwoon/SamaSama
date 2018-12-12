@@ -1,6 +1,5 @@
 import React from "react";
-import img_iridiscent from '../assets/img_iridiscent.jpg'
-import './Tile.css';
+import img_iridiscent from '../assets/img_iridiscent.jpg';
 
 export const Tile = props => {
   return (

@@ -1,5 +1,4 @@
 import React from 'react';
-import './Page4.css';
 
 export class Page4 extends React.Component {
   state = {

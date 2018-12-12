@@ -1,6 +1,5 @@
 import React from 'react';
 import educator from '../assets/educator.mp4';
-import './Page6.css';
 
 export class Page6 extends React.Component {
   componentDidMount() {

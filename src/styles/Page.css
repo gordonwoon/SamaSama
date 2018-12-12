@@ -1,8 +1,8 @@
-.video {
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
+
+.video-bg {
+  z-index: -999;
+  width: inherit;
+  height: inherit;
   object-fit: contain;
 }
 

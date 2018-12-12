@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactBricks from "react-bricks-infinite";
 import { Tile } from "./Tile";
-import './Page9.css';
-
 export class Page9 extends React.Component {
   constructor(props) {
     super(props);

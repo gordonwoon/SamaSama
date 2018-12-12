@@ -1,5 +1,4 @@
 import React from 'react';
-import './Page3.css';
 
 export class Page3 extends React.Component {
   componentDidMount() {

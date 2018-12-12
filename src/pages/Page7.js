@@ -1,4 +1,4 @@
-import './Page7.css';
+import React from 'react';
 
 export const Page7 = props => {
   setTimeout(() => {

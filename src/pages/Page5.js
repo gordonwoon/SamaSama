@@ -1,6 +1,5 @@
 import React from 'react';
 import PORTRAIT from '../assets/PORTRAIT.jpg';
-import './Page5.css';
 
 export const Page5 = props => {
   setTimeout(() => {
