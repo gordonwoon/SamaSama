@@ -1,0 +1,21 @@
+img {
+  position: fixed !important;
+  object-fit: contain !important;
+}
+
+.text-box {
+  position: fixed;
+  left: 35%;
+  top: 60%;
+  width: 25%;
+  text-align: left;
+  font-size: 35px;
+}
+
+.title {
+  color: white;
+}
+
+.subtitle {
+  opacity: 0.5;
+}

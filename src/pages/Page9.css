@@ -1,0 +1,38 @@
+.text-box {
+  color: white;
+  width: 50%;
+  animation-duration: 4s !important;
+}
+
+.bricks-container {
+  margin: 0 !important;
+}
+
+.page9 {
+  color: white;
+  text-align: center;
+  padding: 25px !important;
+  overflow: hidden !important;
+  margin-top: 150px;
+}
+
+.masonry-class {
+  display: block;
+  margin-top: 600px;
+  transform: rotate(-90deg);
+  align-items: left !important;
+}
+
+.page9 ul {
+  margin-top: 150px;
+  text-align: center;
+  list-style-type: none;
+}
+
+.page9 li {
+  display: block;
+  float: left;
+  margin: 0 auto;
+  width: 18%;
+  font-size: 22px;
+}
