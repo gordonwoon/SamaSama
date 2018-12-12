@@ -2,7 +2,6 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
   "dependencies": {
     "animate.css": "^3.7.0",
     "gsap": "^2.0.2",
