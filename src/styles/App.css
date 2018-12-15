@@ -6,15 +6,6 @@
   /*cursor: none;*/
 }
 
-.page-container {
-  width: inherit;
-  height: inherit;
-}
-
-ul {
-  list-style-type: none;
-}
-
 .center {
   position: absolute;
   left: 50%;

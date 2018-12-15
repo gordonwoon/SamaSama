@@ -1,16 +1,31 @@
 import React from 'react';
+import { mountPageTween, unmountPageTween } from '../helper/tween';
+import Navigation from '../components/navigation';
 
 export class Page3 extends React.Component {
-  componentDidMount() {
-    setTimeout(() => {
-      this.props.history.push('/page4');
-    }, 4*1000)
+  constructor(props){
+    super(props);
+
+    this.pageContainer = React.createRef();
   }
+
+  componentDidMount() {
+    mountPageTween(this.pageContainer.current);
+  }
+
+  componentWillUnmount() {
+    unmountPageTween(this.pageContainer.current);
+  }
+
+  handleNext = ()  => {
+    this.props.history.push('/page3');
+  }
+
   render() {
-    const text = 'Meet Joy.';
+
     return (
-      <div className="question-box centerY animated fadeIn">
-        <h1>{text}</h1>
+      <div className="page-container" ref={this.pageContainer}>
+        <Navigation onNext={this.handleNext} />
       </div>
     );
   }

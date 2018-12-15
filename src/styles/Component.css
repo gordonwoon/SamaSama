@@ -1,0 +1,113 @@
+.transition-container {
+  width: inherit;
+  height: inherit;
+}
+
+.page-container {
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  padding: 15px;
+  color: white;
+}
+
+.navigation {
+  position: fixed;
+  width: 100vw;
+  bottom: 5%;
+}
+
+.navigation > button {
+  color: gray;
+  background-color: black;
+}
+
+.navigation > .home-btn {
+  float: left;
+  margin-left: 10%;
+  border: 1px solid gray;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.navigation > .back-btn {
+  float: right;
+  margin-right: 10%;
+  border: 0;
+  padding: 10px;
+}
+
+.navigation p {
+  float: left;
+}
+
+.navigation svg {
+  font-size: 40px;
+  float: left;
+}
+
+.video-bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -999;
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+}
+
+.video-bg > source {
+  background-color: black;
+}
+
+.heart-btn {
+  width: 100px;
+  height: 90px;
+  background-color: red;
+  border-radius: 50%;
+  border: 0;
+  animation-name: pulse;
+  animation-duration: 0.805s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1, 1) }
+  50%  { transform: scale(1.2, 1.2) }
+  100% { transform: scale(1, 1) }
+}
+
+.question-box {
+  width: 90%;
+  height: 40%;
+  font-size: 30px;
+}
+
+.question1 {
+  padding-left: 25%;
+  text-align: left;
+}
+
+.question2 {
+  position: absolute;
+  bottom: 0;
+  padding-left: 25%;
+  text-align: left;
+}
+
+.slick-slider {
+  margin-top: 50px;
+  font-weight: bold;
+}
+
+.slick-slide {
+  opacity: 0.5;
+  margin-top: 15px;
+  font-size: 40px;
+  transition: all 0.5s ease;
+}
+
+.slick-active.slick-center {
+  margin-top: 0;
+  font-size: 50px;
+  opacity: 1;
+}

@@ -1,13 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { TweenLite, TweenMax, Sine, SplitText } from 'gsap';
+import { TweenLite, TweenMax, Sine } from 'gsap';
 
-export const pageTween = element => {
+export const mountPageTween = element => {
   TweenLite.fromTo(element, 0.5, {
-    x: -50,
+    x: 50,
     opacity: 0.25,
   },{
     x: 0,
+    opacity: 1,
+    ease: Sine.easeInOut
+  });
+}
+
+export const unmountPageTween = element => {
+  TweenLite.fromTo(element, 0.5, {
+    x: 0,
+    opacity: 0.25,
+  },{
+    x: -50,
     opacity: 1,
     ease: Sine.easeInOut
   });
