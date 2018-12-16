@@ -1,6 +1,7 @@
 import React from 'react';
 import { mountPageTween, unmountPageTween } from '../helper/tween';
 import Navigation from '../components/navigation';
+import '../components/background';
 
 export class Page4 extends React.Component {
   constructor(props){
