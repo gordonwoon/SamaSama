@@ -79,7 +79,6 @@
 .question-box {
   width: 90%;
   height: 40%;
-  font-size: 30px;
 }
 
 .question1 {
@@ -110,4 +109,16 @@
   margin-top: 0;
   font-size: 50px;
   opacity: 1;
+}
+
+.text-30 {
+  font-size: 30px;
+}
+
+.text-40 {
+  font-size: 40px;
+}
+
+.text-50 {
+  font-size: 50px;
 }

@@ -15,7 +15,6 @@ export class Page1 extends React.Component {
 
   componentDidMount() {
     mountPageTween(this.pageContainer.current);
-
     TweenLite.fromTo(this.heartBtn.current, 0.5, {
       opacity: 0
     },{
@@ -28,20 +27,22 @@ export class Page1 extends React.Component {
     });
   }
 
-  componentWillUnmount() {
+  handleNext = () => {
     unmountPageTween(this.pageContainer.current);
     this.audio.pause();
+    setTimeout(() => {
+      this.props.history.push('/page2');
+    }, 1000)
   }
 
   render() {
-
     return (
       <div className="page-container" ref={this.pageContainer}> 
         <video className="video-bg" loop autoPlay muted>
           <source src={onetwo} type="video/mp4" />
         </video>
   
-        <button className="heart-btn center" onClick={() => this.props.history.push('/page2')} ref={this.heartBtn}>Start</button>
+        <button className="heart-btn center" onClick={this.handleNext} ref={this.heartBtn}>Start</button>
       </div>
     );
   }

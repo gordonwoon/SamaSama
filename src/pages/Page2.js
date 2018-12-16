@@ -17,16 +17,15 @@ export class Page2 extends React.Component {
     mountPageTween(this.pageContainer.current);
   }
 
-  componentWillUnmount() {
-    unmountPageTween(this.pageContainer.current);
-  }
-
   handleSwipe = (from, to) => {
     console.log(to);
   }
 
-  handleNext = ()  => {
-    this.props.history.push('/page3');
+  handleNext = () => {
+    unmountPageTween(this.pageContainer.current);
+    setTimeout(() => {
+      this.props.history.push('/page3');
+    }, 1000)
   }
 
   render() {
@@ -59,7 +58,7 @@ export class Page2 extends React.Component {
           <source src={onetwo} type="video/mp4" />
         </video>
         
-        <div className="question-box center animated fadeIn">
+        <div className="question-box center animated fadeIn text-30">
           <p className="question1">{questionPart1}</p>
           <Slider className="answer-box" beforeChange={this.handleSwipe} {...settings}>
             {answers.map((answer, index) => <div key={index}>{answer}</div>)}

@@ -1,23 +1,19 @@
 import { TweenLite, TweenMax, Sine } from 'gsap';
 
 export const mountPageTween = element => {
-  TweenLite.fromTo(element, 0.5, {
-    x: 50,
-    opacity: 0.25,
+  TweenLite.fromTo(element, 1, {
+    opacity: 0,
   },{
-    x: 0,
     opacity: 1,
     ease: Sine.easeInOut
   });
 }
 
 export const unmountPageTween = element => {
-  TweenLite.fromTo(element, 0.5, {
-    x: 0,
-    opacity: 0.25,
-  },{
-    x: -50,
+  TweenLite.fromTo(element, 1, {
     opacity: 1,
+  },{
+    opacity: 0,
     ease: Sine.easeInOut
   });
 }
@@ -32,7 +28,8 @@ const replaceTextDiv = element => {
   
   [...text].forEach(char => {
     let divElement = document.createElement('div');
-    let divText = document.createTextNode(char);
+    divElement.style = 'float: left;';
+    let divText = document.createTextNode(char === ' ' ? '\u00A0' : char);
     divElement.appendChild(divText);
     element.appendChild(divElement);
   });
@@ -52,6 +49,17 @@ export const randomTextTween = element => {
       yoyo: true,
       repeat: -1,
       repeatDelay: 10
+    });
+  })
+}
+
+export const typingTextTween = element => {
+  replaceTextDiv(element);
+
+  element.childNodes.forEach((node, i) => {
+    TweenMax.from(node, 0.1, {
+      opacity: 0,
+      delay: i * 0.25
     });
   })
 }
