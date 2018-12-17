@@ -1,14 +1,23 @@
-import * as tempTHREE from 'three';
-import * as OBJLoader from 'three-obj-loader';
+import * as THREE from 'three';
+import { MTLLoader, OBJLoader } from 'three-obj-mtl-loader'
 
-const THREE = tempTHREE;
-OBJLoader(THREE);
+let mtlLoader = new MTLLoader();
+let objLoader = new OBJLoader();
 
 var container;
 
 var camera, scene, renderer;
 
-var geometry, group;
+var group, objects = [];
+
+var kutiList = [
+  'kuti_giraffe',
+  'kuti_goldfish',
+  'kuti_lizard',
+  'kuti_monkey',
+  'kuti_pig',
+  'kuti_snake2'
+];
 
 var mouseX = 0, mouseY = 0;
 
@@ -18,94 +27,42 @@ var windowHalfY = window.innerHeight / 2;
 document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
 init();
+animate();
 
 function init() {
   container = document.createElement( 'div' );
   container.id = "stage3d";
   document.body.appendChild( container );
 
-  camera = new THREE.PerspectiveCamera( 95, window.innerWidth / window.innerHeight, 1, 20000 );
-  camera.position.z = 500;
+  camera = new THREE.PerspectiveCamera( 95, window.innerWidth / window.innerHeight, 1, 2000 );
+  camera.position.z = 25;
 
   scene = new THREE.Scene();
 
-  var geometry = new THREE.CylinderGeometry( 0, 100, 100, 3 );
-  var materials = [
-    new THREE.MeshPhongMaterial({
-      // light
-      specular: '#b03b2e',
-      // intermediate
-      color: '#a31a0b',
-      // dark
-      emissive: '#7d1409',
-      shininess: 50 ,
-      transparent: true,
-      opacity: 0.9,
-      overdraw: true
-    }),
-      new THREE.MeshPhongMaterial({
-      // light
-      specular: '#2fa4b1',
-      // intermediate
-      color: '#0b94a3',
-      // dark
-      emissive: '#0b7681',
-      shininess: 50 ,
-      transparent: true,
-      opacity: 0.9,
-      overdraw: true
-    })
-  ];
 
-  // instantiate a loader
-  var loader = new THREE.OBJLoader();
+  var ambientLight = new THREE.AmbientLight( 0xcccccc, 1 );
+  scene.add( ambientLight );
 
-  // load a resource
-  loader.load(
-    // resource URL
-    'kuti_spindle.obj',
-    // called when resource is loaded
-    function ( object ) {
-      group = new THREE.Object3D();
-      for ( var i = 0; i < 356; i ++ ) {
-        var mesh = new THREE.Mesh( geometry, materials[Math.floor(Math.random() * materials.length)] );
-        mesh.position.x = Math.random() * 2000 - 1000;
-        mesh.position.y = Math.random() * 2000 - 1000;
-        mesh.position.z = Math.random() * 2000 - 1000;
-        mesh.rotation.x = Math.random() * 2 * Math.PI;
-        mesh.rotation.y = Math.random() * 2 * Math.PI;
-        mesh.opacity = 50;
-        mesh.matrixAutoUpdate = false;
-        mesh.updateMatrix();
-        group.add( mesh );
-      }
-      console.log(object);
-      //scene.add( group );
-      scene.add( object );
-      console.log(scene);
-    
-      var directionalLight = new THREE.DirectionalLight(0xffffff);
-      directionalLight.position.set(1, 1, 1).normalize();
-      directionalLight.intensity = 1;
-      scene.add(directionalLight);
-    
-      renderer = new THREE.WebGLRenderer();
-      renderer.setSize( window.innerWidth, window.innerHeight );
-      renderer.sortObjects = false;
-      container.appendChild( renderer.domElement );
-      window.addEventListener( 'resize', onWindowResize, false );
-    
-      animate();
-    },
-    // called when loading is in progresses
-    function ( xhr ) {
-      console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-    },
-    // called when loading has errors
-    function ( error ) {
-      console.log( 'An error happened' );
-    }
-  );
+  var pointLight = new THREE.PointLight( 0xffffff, 1 );
+  camera.add( pointLight );
+
+  var directionalLight = new THREE.DirectionalLight(0xffffff);
+  directionalLight.position.set(1, 1, 1).normalize();
+  directionalLight.intensity = 1;
+  scene.add(directionalLight);
+  scene.add( camera );
+
+  loadAllKutis();
+  renderKutis();
+  
+  group = new THREE.Object3D();
+
+  renderer = new THREE.WebGLRenderer();
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.sortObjects = false;
+  container.appendChild( renderer.domElement );
+  window.addEventListener( 'resize', onWindowResize, false );
+
 }
 
 function onWindowResize() {
@@ -123,14 +80,16 @@ function onDocumentMouseMove(event) {
   mouseY = ( event.clientY - windowHalfY ) * 2;
 }
 
+//
+
 function animate() {
   requestAnimationFrame( animate );
   render();
 }
 
 function render() {
-  camera.position.x += ( mouseX - camera.position.x ) * .0080;
-  camera.position.y += ( - mouseY - camera.position.y ) * .0080;
+  camera.position.x += ( mouseX - camera.position.x ) * .0008;
+  camera.position.y += ( - mouseY - camera.position.y ) * .0008;
 
   camera.lookAt( scene.position );
 
@@ -141,3 +100,61 @@ function render() {
 
   renderer.render( scene, camera );
 } 
+
+
+
+function loadAllKutis() {
+  var onProgress = function ( xhr ) {
+    if ( xhr.lengthComputable ) {
+      var percentComplete = xhr.loaded / xhr.total * 100;
+      console.log( Math.round( percentComplete, 2 ) + '% downloaded' );
+    }
+  };
+  var onError = function () {
+    console.log('Error encountered while loading kuti');
+  };
+
+  kutiList.forEach(kuti => {
+    mtlLoader.load( `kuti_animals/${kuti}.mtl`, function ( materials ) {
+      materials.preload();
+      
+      objLoader.setMaterials( materials )
+        .load( `kuti_animals/${kuti}.obj`, function ( object ) {
+          objects.push(object);
+        }, onProgress, onError );
+    } );
+  })
+}
+
+function renderKutis() {
+  if(objects.length < kutiList.length) {
+    setTimeout(() => {
+      renderKutis();
+    }, 100);
+  }
+  else {  
+    for ( var i = 0; i < 20; i ++ ) {
+      var randomIndex = Math.floor(Math.random() * kutiList.length)
+      var instance = objects[randomIndex].clone();
+      /* All objects became same color
+      instance.traverse(child => {
+        if (child instanceof THREE.Mesh) {
+          var color = new THREE.Color( 0xffffff );
+          color.setHex( Math.random() * 0xffffff );
+          child.material.color = color;
+        }
+      });
+      */
+      instance.position.x = Math.random() * 150 - 75;
+      instance.position.y = Math.random() * 150 - 75;
+      instance.position.z = Math.random() * 150 - 75;
+      instance.rotation.x = Math.random() * 2 * Math.PI;
+      instance.rotation.y = Math.random() * 2 * Math.PI;
+      instance.opacity = 50;
+      instance.matrixAutoUpdate = false;
+      instance.updateMatrix();
+      group.add( instance );
+    }
+    scene.add(group);
+  }
+}
