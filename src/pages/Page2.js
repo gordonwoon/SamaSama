@@ -58,7 +58,7 @@ export class Page2 extends React.Component {
           <source src={onetwo} type="video/mp4" />
         </video>
         
-        <div className="question-box center animated fadeIn text-30">
+        <div className="text-box center animated fadeIn text-30">
           <p className="question1">{questionPart1}</p>
           <Slider className="answer-box" beforeChange={this.handleSwipe} {...settings}>
             {answers.map((answer, index) => <div key={index}>{answer}</div>)}

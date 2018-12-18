@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# File Created: 13.12.2018 01:56:14
+# File Created: 18.12.2018 04:54:07
 
 mtllib kuti_giraffe.mtl
 
@@ -69319,7 +69319,7 @@ vt 0.2442 0.5091 0.0000
 # 24392 texture coords
 
 g 10021_Giraffe_v03
-usemtl Material__48
+usemtl mat1
 s 4
 f 1/1/1 2/2/2 3/3/3 4/4/4 
 f 5/5/5 6/6/6 2/2/2 1/1/1 

@@ -12,12 +12,21 @@ var group, objects = [];
 
 var kutiList = [
   'kuti_giraffe',
-  'kuti_goldfish',
-  'kuti_lizard',
+  'kuti_snake2',
   'kuti_monkey',
-  'kuti_pig',
-  'kuti_snake2'
+  'kuti_lizard',
+  'kuti_goldfish',
+  'kuti_pig'
 ];
+
+var matList = [
+  'mat1',
+  'mat2',
+  'mat3',
+  'mat4',
+  'mat5',
+  'mat6'
+]
 
 var mouseX = 0, mouseY = 0;
 
@@ -31,7 +40,7 @@ animate();
 
 function init() {
   container = document.createElement( 'div' );
-  container.id = "stage3d";
+  container.id = "kuti-background";
   document.body.appendChild( container );
 
   camera = new THREE.PerspectiveCamera( 95, window.innerWidth / window.innerHeight, 1, 2000 );
@@ -88,9 +97,6 @@ function animate() {
 }
 
 function render() {
-  camera.position.x += ( mouseX - camera.position.x ) * .0008;
-  camera.position.y += ( - mouseY - camera.position.y ) * .0008;
-
   camera.lookAt( scene.position );
 
   var currentSeconds = Date.now();
@@ -114,8 +120,8 @@ function loadAllKutis() {
     console.log('Error encountered while loading kuti');
   };
 
-  kutiList.forEach(kuti => {
-    mtlLoader.load( `kuti_animals/${kuti}.mtl`, function ( materials ) {
+  kutiList.forEach((kuti, index) => {
+    mtlLoader.load( `kuti_animals/${matList[index]}.mtl`, function ( materials ) {
       materials.preload();
       
       objLoader.setMaterials( materials )
@@ -133,10 +139,9 @@ function renderKutis() {
     }, 100);
   }
   else {  
-    for ( var i = 0; i < 20; i ++ ) {
+    for ( var i = 0; i < 50; i ++ ) {
       var randomIndex = Math.floor(Math.random() * kutiList.length)
       var instance = objects[randomIndex].clone();
-      /* All objects became same color
       instance.traverse(child => {
         if (child instanceof THREE.Mesh) {
           var color = new THREE.Color( 0xffffff );
@@ -144,10 +149,9 @@ function renderKutis() {
           child.material.color = color;
         }
       });
-      */
-      instance.position.x = Math.random() * 150 - 75;
-      instance.position.y = Math.random() * 150 - 75;
-      instance.position.z = Math.random() * 150 - 75;
+      instance.position.x = Math.random() * 100 - 50;
+      instance.position.y = Math.random() * 100 - 50;
+      instance.position.z = Math.random() * 100 - 50;
       instance.rotation.x = Math.random() * 2 * Math.PI;
       instance.rotation.y = Math.random() * 2 * Math.PI;
       instance.opacity = 50;

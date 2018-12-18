@@ -1,6 +1,5 @@
 import React from 'react';
 import { mountPageTween, unmountPageTween, typingTextTween } from '../helper/tween';
-import Navigation from '../components/navigation';
 
 export class Page3 extends React.Component {
   constructor(props){
@@ -31,7 +30,6 @@ export class Page3 extends React.Component {
     return (
       <div className="page-container" ref={this.pageContainer}>
         <p className="centerY text-50" style={{marginLeft: '10%'}}ref={this.text}>{text}</p>
-        <Navigation onNext={this.handleNext} />
       </div>
     );
   }
