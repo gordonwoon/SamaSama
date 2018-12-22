@@ -6,14 +6,16 @@ export class Page7 extends React.Component {
     super(props);
 
     this.pageContainer = React.createRef();
+    this.text = React.createRef();
   }
 
   componentDidMount() {
     mountPageTween(this.pageContainer.current);
+    typingTextTween(this.text.current);
 
     setTimeout(() => {
       this.handleNext();
-    }, 3000)
+    }, 10000)
   }
 
   handleNext = () => {
@@ -24,9 +26,10 @@ export class Page7 extends React.Component {
   }
 
   render() {
+    const text = 'But not everyone is as lucky as Joy.';
     return (
       <div className="page-container" ref={this.pageContainer}>
-        <p className="centerY text-50">But not everyone is as lucky as Joy.</p>
+        <p className="centerY text-30" ref={this.text}>{text}</p>
       </div>
     );
   }

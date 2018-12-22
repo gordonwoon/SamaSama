@@ -32,9 +32,9 @@ export class Page8A extends React.Component {
 
         <p className="text-potrait animated fadeIn">
           <p><strong>Are you an</strong></p>
-          <p className="centerY text-50"ref={this.employer}>{employer}</p>
+          <p className="centerY text-30"ref={this.employer}>{employer}</p>
           <p>or</p>
-          <p className="centerY text-50"ref={this.community}>{community}</p>
+          <p className="centerY text-30"ref={this.community}>{community}</p>
         </p>
 
         // <Navigation onNext={this.handleNext} />
