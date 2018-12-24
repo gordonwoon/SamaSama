@@ -140,3 +140,7 @@
 .text-potrait span {
   opacity: 0.7;
 }
+
+.btn-test {
+  background-color: blue;
+}
