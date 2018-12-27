@@ -121,14 +121,18 @@ function loadAllKutis() {
   };
 
   kutiList.forEach((kuti, index) => {
-    mtlLoader.load( `kuti_animals/${matList[index]}.mtl`, function ( materials ) {
-      materials.preload();
-      
-      objLoader.setMaterials( materials )
-        .load( `kuti_animals/${kuti}.obj`, function ( object ) {
-          objects.push(object);
-        }, onProgress, onError );
-    } );
+    setTimeout(() => {
+      mtlLoader.load( `kuti_animals/${matList[index]}.mtl`, function ( materials ) {
+        materials.preload();
+        
+        setTimeout(() => {
+          objLoader.setMaterials( materials )
+            .load( `kuti_animals/${kuti}.obj`, function ( object ) {
+              objects.push(object);
+            }, onProgress, onError );
+        }, 1)
+      })
+    }, 1);
   })
 }
 

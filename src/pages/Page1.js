@@ -37,11 +37,11 @@ export class Page1 extends React.Component {
 
   render() {
     return (
-      <div className="page-container" ref={this.pageContainer}> 
+      <div className="page-container" ref={this.pageContainer}>
         <video className="video-bg" loop autoPlay muted>
           <source src={onetwo} type="video/mp4" />
         </video>
-  
+
         <button className="heart-btn center" onClick={this.handleNext} ref={this.heartBtn}>Start</button>
       </div>
     );
