@@ -1,4 +1,4 @@
-import { TweenLite, TweenMax, Sine } from 'gsap';
+import { TweenLite, TweenMax, Sine, TimelineMax } from 'gsap';
 
 export const mountPageTween = element => {
   TweenLite.fromTo(element, 1, {
@@ -59,7 +59,30 @@ export const typingTextTween = element => {
   element.childNodes.forEach((node, i) => {
     TweenMax.from(node, 0.1, {
       opacity: 0,
-      delay: i * 0.25
+      delay: i * 0.125
+    });
+  })
+}
+
+export const flashElementTween = element => {
+
+  element.childNodes.forEach((node, i) => {
+  var tl = new TimelineMax({});
+    
+  tl.fromTo(node, 1.5, {
+      position: 'fixed',
+      opacity: 0,
+      left: '50%',
+      top: '50%',
+      scale: .1
+    },{
+      opacity: 1,
+      scale: 1,
+      delay: i * 3,
+    })
+    .to(node, 2, {
+      left: `${random(10, 90)}%`,
+      top: `${random(10, 90)}%`,
     });
   })
 }

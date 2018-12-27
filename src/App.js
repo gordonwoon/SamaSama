@@ -7,6 +7,7 @@ import { Page4 } from './pages/Page4';
 import { Page5 } from './pages/Page5';
 import { Page6 } from './pages/Page6';
 import { Page7 } from './pages/Page7';
+import { Page8 } from './pages/Page8';
 import { Page8A } from './pages/Page8A';
 import { Page8B } from './pages/Page8B';
 import { Page8C } from './pages/Page8C';
@@ -25,6 +26,7 @@ class App extends React.Component {
           <Route path="/page5" exact component={Page5} />
           <Route path="/page6" exact component={Page6} />
           <Route path="/page7" exact component={Page7} />
+          <Route path="/page8" exact component={Page8} />
           <Route path="/page8A" exact component={Page8A} />
           <Route path="/page8B" exact component={Page8B} />
           <Route path="/page8C" exact component={Page8C} />

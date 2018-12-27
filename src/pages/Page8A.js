@@ -36,8 +36,7 @@ export class Page8A extends React.Component {
           <p>or</p>
           <p className="centerY text-30"ref={this.community}>{community}</p>
         </p>
-
-        // <Navigation onNext={this.handleNext} />
+        
       </div>
     );
   }
