@@ -34,6 +34,7 @@ export class Page5 extends React.Component {
           <p><span>Paid  </span>10k for agency fees</p>
           <p><span>Family needs  </span>500/month</p>
         </p>
+        <button className="btn-test">test</button>
       
         <Navigation onNext={this.handleNext} />
       </div>
